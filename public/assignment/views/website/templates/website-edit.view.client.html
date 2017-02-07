@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New Website</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid backcolor-blue">
         <div class="col-md-4 col-lg-4 hidden-xs hidden-sm">
             <div class="navbar-text pull-left wbdv-no-left-margin">
-                <a href="website-list.html">
+                <a href="#/user/:uid/website">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -22,25 +12,25 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="website-new.html">
+                <a href="#/user/:uid/website/new">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-8">
             <div class="navbar-text pull-left wbdv-no-left-margin hidden-md hidden-lg">
-                <a href="website-list.html">
+                <a href="#/user/:uid/website">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right wbdv-no-right-margin">
-                <a href="website-list.html">
+                <a href="#/user/:uid/website">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
             <div class="navbar-header color-blue">
                 <a class="navbar-brand" href="#">
-                    New Website
+                    Edit Website
                 </a>
             </div>
         </div>
@@ -50,26 +40,26 @@
     <div class="row container-fluid">
         <ul class="list-group">
             <li class="list-group-item">
-                <a href="page-list.html" class="navbar-link color-blue">Address Book App</a>
-                <a href="website-edit.html" class="navbar-link pull-right">
+                <a href="#/user/:uid/website/:wid/page" class="navbar-link color-blue">Address Book App</a>
+                <a href="#/user/:uid/website/:wid" class="navbar-link pull-right">
                     <span class="glyphicon glyphicon-cog color-blue"></span>
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="page-list.html" class="navbar-link color-blue">Blogger</a>
-                <a href="website-edit.html" class="navbar-link pull-right">
+                <a href="#/user/:uid/website/:wid/page" class="navbar-link color-blue">Blogger</a>
+                <a href="#/user/:uid/website/:wid" class="navbar-link pull-right">
                     <span class="glyphicon glyphicon-cog color-blue"></span>
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="page-list.html" class="navbar-link color-blue">Blogger App</a>
-                <a href="website-edit.html" class="navbar-link pull-right">
+                <a href="#/user/:uid/website/:wid/page" class="navbar-link color-blue">Blogger App</a>
+                <a href="#/user/:uid/website/:wid" class="navbar-link pull-right">
                     <span class="glyphicon glyphicon-cog color-blue"></span>
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="page-list.html" class="navbar-link color-blue">Script Testing</a>
-                <a href="website-edit.html" class="navbar-link pull-right">
+                <a href="#/user/:uid/website/:wid/page" class="navbar-link color-blue">Script Testing</a>
+                <a href="#/user/:uid/website/:wid" class="navbar-link pull-right">
                     <span class="glyphicon glyphicon-cog color-blue"></span>
                 </a>
             </li>
@@ -88,16 +78,14 @@
                 <textarea class="form-control" id="description" placeholder="Description"></textarea>
             </div>
         </form>
+        <a class="btn btn-danger  btn-block" href="#/user/:uid/website">Delete</a>
     </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom backcolor-blue">
     <div class="navbar-text pull-right wbdv-margin-right-15">
-        <a href="profile.html">
+        <a href="#/user/:uid">
             <span class="glyphicon glyphicon-user"></span>
         </a>
     </div>
 </nav>
-
-</body>
-</html>

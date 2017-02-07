@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New Page</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid backcolor-blue">
         <div class="col-md-4 col-lg-4 hidden-xs hidden-sm">
             <div class="navbar-text pull-left wbdv-no-left-margin">
-                <a href="page-list.html">
+                <a href="#/user/:uid/website/:wid/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -22,19 +12,19 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="page-new.html">
+                <a href="#/user/:uid/website/:wid/page/new">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-8">
             <div class="navbar-text pull-left wbdv-no-left-margin hidden-md hidden-lg">
-                <a href="page-list.html">
+                <a href="#/user/:uid/website/:wid/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right wbdv-no-right-margin">
-                <a href="page-list.html">
+                <a href="#/user/:uid/website/:wid/page">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -50,32 +40,32 @@
     <div class="row container-fluid">
         <ul class="list-group">
             <li class="list-group-item">
-                <a href="widget-list.html" class="navbar-link color-blue">Blog Post</a>
-                <a href="page-edit.html" class="navbar-link pull-right">
+                <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link color-blue">Blog Post</a>
+                <a href="#/user/:uid/website/:wid/page/:pid" class="navbar-link pull-right">
                     <span class="glyphicon glyphicon-cog color-blue"></span>
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="widget-list.html" class="navbar-link color-blue">Blogs</a>
-                <a href="page-edit.html" class="navbar-link pull-right">
+                <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link color-blue">Blogs</a>
+                <a href="#/user/:uid/website/:wid/page/:pid" class="navbar-link pull-right">
                     <span class="glyphicon glyphicon-cog color-blue"></span>
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="widget-list.html" class="navbar-link color-blue">Home</a>
-                <a href="page-edit.html" class="navbar-link pull-right">
+                <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link color-blue">Home</a>
+                <a href="#/user/:uid/website/:wid/page/:pid" class="navbar-link pull-right">
                     <span class="glyphicon glyphicon-cog color-blue"></span>
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="widget-list.html" class="navbar-link color-blue">About</a>
-                <a href="page-edit.html" class="navbar-link pull-right">
+                <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link color-blue">About</a>
+                <a href="#/user/:uid/website/:wid/page/:pid" class="navbar-link pull-right">
                     <span class="glyphicon glyphicon-cog color-blue"></span>
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="widget-list.html" class="navbar-link color-blue">Contact Us</a>
-                <a href="page-edit.html" class="navbar-link pull-right">
+                <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link color-blue">Contact Us</a>
+                <a href="#/user/:uid/website/:wid/page/:pid" class="navbar-link pull-right">
                     <span class="glyphicon glyphicon-cog color-blue"></span>
                 </a>
             </li>
@@ -94,16 +84,14 @@
                 <input type="text" class="form-control" id="title" placeholder="Page Title">
             </div>
         </form>
+        <a class="btn btn-danger  btn-block" href="#/user/:uid/website/:wid/page">Delete</a>
     </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom backcolor-blue">
     <div class="navbar-text pull-right wbdv-margin-right-15">
-        <a href="profile.html">
+        <a href="#/user/:uid">
             <span class="glyphicon glyphicon-user"></span>
         </a>
     </div>
 </nav>
-
-</body>
-</html>

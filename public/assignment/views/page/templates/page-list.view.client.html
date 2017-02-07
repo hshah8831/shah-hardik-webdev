@@ -1,28 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Website List</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid backcolor-blue">
         <div class="navbar-text pull-left">
-            <a href="profile.html">
+            <a href="#/user/:uid/website">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
-        <div class="navbar-text wbdv-margin-right-15 pull-right">
-            <a href="website-new.html">
+        <div class="navbar-text wbdv-margin-right-15  pull-right">
+            <a href="#/user/:uid/website/:wid/page/new">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
         <div class="navbar-header color-blue">
             <a class="navbar-brand" href="#">
-                Websites
+                Pages
             </a>
         </div>
     </div>
@@ -31,26 +21,32 @@
 <div class="row container center">
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="page-list.html" class="navbar-link color-blue">Address Book App</a>
-            <a href="website-edit.html" class="navbar-link pull-right">
+            <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link color-blue">Blog Post</a>
+            <a href="#/user/:uid/website/:wid/page/:pid" class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-cog color-blue"></span>
             </a>
         </li>
         <li class="list-group-item">
-            <a href="page-list.html" class="navbar-link color-blue">Blogger</a>
-            <a href="website-edit.html" class="navbar-link pull-right">
+            <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link color-blue">Blogs</a>
+            <a href="#/user/:uid/website/:wid/page/:pid" class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-cog color-blue"></span>
             </a>
         </li>
         <li class="list-group-item">
-            <a href="page-list.html" class="navbar-link color-blue">Blogger App</a>
-            <a href="website-edit.html" class="navbar-link pull-right">
+            <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link color-blue">Home</a>
+            <a href="#/user/:uid/website/:wid/page/:pid" class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-cog color-blue"></span>
             </a>
         </li>
         <li class="list-group-item">
-            <a href="page-list.html" class="navbar-link color-blue">Script Testing</a>
-            <a href="website-edit.html" class="navbar-link pull-right">
+            <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link color-blue">About</a>
+            <a href="#/user/:uid/website/:wid/page/:pid" class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-cog color-blue"></span>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link color-blue">Contact Us</a>
+            <a href="#/user/:uid/website/:wid/page/:pid" class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-cog color-blue"></span>
             </a>
         </li>
@@ -59,11 +55,8 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom backcolor-blue">
     <div class="navbar-text pull-right wbdv-margin-right-15">
-        <a href="profile.html">
+        <a href="#/user/:uid">
             <span class="glyphicon glyphicon-user"></span>
         </a>
     </div>
 </nav>
-
-</body>
-</html>
