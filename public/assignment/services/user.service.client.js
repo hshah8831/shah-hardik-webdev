@@ -29,7 +29,7 @@
             for(var u in users) {
                 var user = users[u];
                 if( user.username === username ) {
-                    return user;
+                    return angular.copy(user);
                 }
             }
             return null;
@@ -38,8 +38,8 @@
         function findUserById(uid) {
             for(var u in users) {
                 var user = users[u];
-                if( user._id === uid ) {
-                    return user;
+                if( user._id == uid ) {
+                    return angular.copy(user);
                 }
             }
             return null;
@@ -50,7 +50,7 @@
                 var user = users[u];
                 if( user.username === username &&
                     user.password === password) {
-                    return user;
+                    return angular.copy(user);
                 }
             }
             return null;
@@ -58,20 +58,19 @@
         
         function updateUser(uid, user) {
             for(var u in users) {
-                if( users[u]._id === uid ) {
-                    users[u].firstName=user.firstName;
-                    users[u].lastName=user.lastName;
-                    users[u].username=user.username;
-                    users[u].password=user.password;
-                    return true
+                var user = users[u];
+                if( user._id == userId ) {
+                    users[u].firstName = user.firstName;
+                    users[u].lastName = user.lastName;
+                    return user;
                 }
             }
-            return false;
+            return null;
         }
         
         function deleteUser(uid) {
             for(var u in users) {
-                if( users[u]._id === uid ) {
+                if( users[u]._id == uid ) {
                     users.splice(u,1);
                     return true
                 }

@@ -19,5 +19,5 @@
                 vm.message = "user successfully updated"
             }
         };
-    }
+    };
 })();

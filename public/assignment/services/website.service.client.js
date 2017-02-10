@@ -22,26 +22,37 @@
         };
         return api;
 
-        function createWebsite(website){
-            users.push(website);
+        function createWebsite(userId, website) {
+            website.developerId = userId;
+            website._id = (new Date()).getTime();
+            websites.push(website);
+            return website._id;
         }
 
-        function findWebsitesByUser(uid) {
+        function findWebsiteById(wid) {
             for(var w in websites) {
-                var website = websites[w];
-                if( website.developerId === uid ) {
-                    return website;
+                if( websites[w]._id == wid) {
+                    return angular.copy(websites[w]);
                 }
             }
             return null;
         }
+        
+        function findWebsitesByUser(userId) {
+            var sites = [];
+            for(var w in websites) {
+                if(websites[w].developerId == userId) {
+                    sites.push(websites[w]);
+                }
+            }
+            return sites;
+        }
 
         function updateWebsite(wid, website) {
             for(var w in websites) {
-                if( websites[w]._id === wid ) {
+                if( websites[w]._id == wid ) {
                     websites[w].description=website.description;
                     websites[w].name=website.name;
-                    websites[w].developerId=website.developerId;
                     return true;
                 }
             }
@@ -50,7 +61,7 @@
 
         function deleteWebsite(wid) {
             for(var w in websites) {
-                if( websites[w]._id === wid ) {
+                if( websites[w]._id == wid ) {
                     websites.splice(w,1);
                     return true;
                 }

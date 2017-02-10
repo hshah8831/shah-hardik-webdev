@@ -6,9 +6,9 @@
     function loginController(UserService, $location) {
         var vm = this;
         vm.login = login;
+        vm.register=register;
 
         function login(user) {
-            console.log("entered model.login");
             var loginUser = UserService.findUserByCredentials(user.username, user.password);
             if(loginUser != null) {
                 $location.url('/user/' + loginUser._id);
@@ -16,5 +16,9 @@
                 vm.error = 'user not found';
             }
         }
-    }
+
+        function register() {
+            $location.url('/register/');
+        }
+    };
 })();
