@@ -12,52 +12,54 @@
 
         var api = {
             "createPage": createPage,
-            "findPageByWebsiteId": findWidgetsByPageId,
-            "findPageById": findWidgetById,
+            "findPageByWebsiteId": findPageByWebsiteId,
+            "findPageById": findPageById,
             "updatePage":updatePage,
             "deletePage":deletePage
         };
         return api;
 
-        function createPage(page){
-            users.push(page);
+        function createPage(wid, page){
+            page.websiteId = wid;
+            page._id = (new Date()).getTime();
+            pages.push(page);
         }
 
         function findPageByWebsiteId(wid) {
+            var ret_pages = [];
             for(var p in pages){
                 var page = pages[p];
-                if(page.websiteId === wid){
-                    return page;
+                if(page.websiteId == wid){
+                    ret_pages.push(page);
                 }
             }
-            return null;
+            return ret_pages;
         }
 
         function findPageById(pid) {
             for(var p in pages){
                 var page = pages[p];
-                if(page._id === pid){
-                    return page;
+                if(page._id == pid){
+                    return angular.copy(page);
                 }
             }
             return null;
         }
 
-        function updateWidget(pid, page) {
+        function updatePage(pid, page) {
             for(var p in pages) {
-                if( pages[p]._id === pid ) {
-                    pages[w].name=page.name;
-                    pages[w].websiteId=page.websiteId;
-                    pages[w].description=page.description;
+                if( pages[p]._id == pid ) {
+                    pages[p].name=page.name;
+                    pages[p].description=page.description;
                     return true;
                 }
             }
             return false;
         }
 
-        function deleteWidget(wgid) {
+        function deletePage(pid) {
             for(var p in pages) {
-                if( pages[p]._id === pid ) {
+                if( pages[p]._id == pid ) {
                     pages.splice(p,1);
                     return true;
                 }
