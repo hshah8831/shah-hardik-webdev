@@ -16,7 +16,7 @@
 <div class="row container center">
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/model.create()"
+            <a ng-click="model.createHeader()"
                class="navbar-link color-blue">Header</a>
         </li>
         <li class="list-group-item">
@@ -35,10 +35,10 @@
             <a href="#" class="navbar-link color-blue">Button</a>
         </li>
         <li class="list-group-item">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/:wgid" class="navbar-link color-blue">Image</a>
+            <a ng-click="model.createImage()" class="navbar-link color-blue">Image</a>
         </li>
         <li class="list-group-item">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/:wgid" class="navbar-link color-blue">Youtube</a>
+            <a  ng-click="model.createYoutube()" class="navbar-link color-blue">Youtube</a>
         </li>
         <li class="list-group-item">
             <a href="#" class="navbar-link color-blue">Data Table</a>

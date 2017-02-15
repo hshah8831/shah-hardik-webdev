@@ -27,7 +27,7 @@
 
         function createWidget(widget){
             widget._id = (new Date()).getTime();
-            users.push(widget);
+            widgets.push(widget);
             return widget
         }
 
