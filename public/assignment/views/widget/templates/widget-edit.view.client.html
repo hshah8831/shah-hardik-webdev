@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid backcolor-blue">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text wbdv-margin-right-15 pull-right">
+            <a ng-click="model.update(model.widget._id,model.widget)"
+               href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+        <div class="navbar-header color-blue">
+            <a class="navbar-brand" href="#">
+                Widget Edit
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid"
+     ng-include="model.getEditorTemplateUrl(model.widget.widgetType)">
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom backcolor-blue">
+    <div class="navbar-text pull-right wbdv-margin-right-15">
+        <a href="#/user/{{model.userId}}">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>

@@ -24,6 +24,7 @@
         function createUser(user){
             user._id = (new Date()).getTime();
             users.push(user);
+            return user;
         }
 
         function findUserByUsername(username) {
@@ -59,10 +60,10 @@
         
         function updateUser(uid, user) {
             for(var u in users) {
-                var user = users[u];
-                if( user._id == userId ) {
+                if( users[u]._id == uid ) {
                     users[u].firstName = user.firstName;
                     users[u].lastName = user.lastName;
+                    users[u].email = user.email;
                     return user;
                 }
             }

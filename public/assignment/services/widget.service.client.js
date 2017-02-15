@@ -25,25 +25,26 @@
         };
         return api;
 
-        function createWebsite(website){
-            users.push(website);
+        function createWidget(widget){
+            widget._id = (new Date()).getTime();
+            users.push(widget);
+            return widget
         }
 
         function findWidgetsByPageId(pid) {
+            ret_widgets=[]
             for(var w in widgets){
-                var widget = widgets[w];
-                if(widget.pageId === pid){
-                    return widget;
+                if(widgets[w].pageId == pid){
+                    ret_widgets.push(widgets[w]);
                 }
             }
-            return null;
+            return ret_widgets;
         }
 
         function findWidgetById(wgid) {
             for(var w in widgets) {
-                var widget = widgets[w];
-                if( widgets._id === wgid ) {
-                    return widget;
+                if( widgets[w]._id == wgid ) {
+                    return widgets[w];
                 }
             }
             return null;
@@ -51,25 +52,31 @@
 
         function updateWidget(wgid, widget) {
             for(var w in widgets) {
-                if( widgets[w]._id === wgid ) {
-                    websites[w].widgetType=website.widgetType;
-                    websites[w].pageId=website.pageId;
-                    websites[w].size=website.size;
-                    websites[w].text=website.text;
-                    return true;
+                if( widgets[w]._id == wgid ) {
+                    if(widget.widgetType == "HEADER"){
+                        widgets[w].size=widget.size;
+                        widgets[w].text=widget.text;
+                    } else if(widget.widgetType == "IMAGE" || widget.widgetType == "YOUTUBE"){
+                        widgets[w].url=widget.url;
+                        widgets[w].width=widget.width;
+                    } else if(widget.widgetType == "HTML"){
+                        widgets[w].text=widget.text;
+                    }
+                    return widgets[w];
                 }
             }
-            return false;
+            return null;
         }
 
         function deleteWidget(wgid) {
             for(var w in widgets) {
-                if( widgets[w]._id === wgid ) {
+                if( widgets[w]._id == wgid ) {
+                    var widget = widgets[w];
                     widgets.splice(w,1);
-                    return true;
+                    return widget;
                 }
             }
-            return false;
+            return null;
         }
     }
 })();

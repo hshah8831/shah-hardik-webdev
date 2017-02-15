@@ -65,9 +65,7 @@
                 <textarea class="form-control"
                           id="description"
                           placeholder="Description"
-                          ng-model = "model.website.description">
-                    {{model.website.description}}
-                </textarea>
+                          ng-model = "model.website.description">{{model.website.description}}</textarea>
             </div>
         </form>
         <a class="btn btn-danger  btn-block" ng-click = "model.delete(model.websiteId)" href="#/user/{{model.userId}}/website">Delete</a>
