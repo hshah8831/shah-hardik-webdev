@@ -5,7 +5,10 @@
 
     function registerController($location, UserService) {
         var vm = this;
-        vm.register=register;
+        function init(){
+            vm.register=register;
+        }
+        init();
 
         function register(user) {
             if(user.password1 === user.password2){

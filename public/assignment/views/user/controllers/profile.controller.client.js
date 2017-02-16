@@ -8,8 +8,11 @@
         var userId = $routeParams['uid'];
         vm.update = update;
 
-        var user = UserService.findUserById(userId);
-        vm.user = user;
+        function init() {
+            var user = UserService.findUserById(userId);
+            vm.user = user;
+        }
+        init();
 
         function update(newUser) {
             var user = UserService.updateUser(userId, newUser);
