@@ -12,17 +12,38 @@
         vm.update = update;
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
-            vm.page = PageService.findPageById(vm.pageId);
+            var promisePages = PageService.findPageByWebsiteId(vm.websiteId);
+            promisePages.then(function (res) {
+                vm.pages = res.data;
+            }, function (res) {
+                vm.error = 'user not found';
+            });
+
+            var promisePage = PageService.findPageById(vm.pageId);
+            promisePage.then(function (res) {
+                vm.page = res.data;
+            }, function (res) {
+                vm.error = 'user not found';
+            });
         };
         init();
         
         function update(pid, page) {
-            PageService.updatePage(pid, page);
+            var promise = PageService.updatePage(pid, page);
+            promise.then(function (res) {
+                return;
+            }, function (res) {
+                vm.error = 'user not found';
+            });
         }
         
         function deletePage(pid) {
-            PageService.deletePage(pid);
+            var promise = PageService.deletePage(pid);
+            promise.then(function (res) {
+                return;
+            }, function (res) {
+                vm.error = 'user not found';
+            });
         }
     }
 })();

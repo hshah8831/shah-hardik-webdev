@@ -16,27 +16,40 @@
             var widget = {};
             widget.pageId = vm.pageId;
             widget.widgetType = "HEADER";
-            widget = WidgetService.createWidget(widget);
-            var dest = "/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+ "/widget/"+widget._id;
-            $location.url(dest);
+            createAndNavigate(widget);
         }
 
         function createYoutube() {
             var widget = {};
             widget.pageId = vm.pageId;
             widget.widgetType = "YOUTUBE";
-            WidgetService.createWidget(widget);
-            var dest = "/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+ "/widget/"+widget._id;
-            $location.url(dest);
+            createAndNavigate(widget);
         }
 
         function createImage() {
             var widget = {};
             widget.pageId = vm.pageId;
             widget.widgetType = "IMAGE";
-            WidgetService.createWidget(widget);
-            var dest = "/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+ "/widget/"+widget._id;
-            $location.url(dest);
+            createAndNavigate(widget);
+        }
+
+        function createAndNavigate(widget) {
+            var promiseWidgets = WidgetService.findWidgetsByPageId(vm.pageId);
+            var widgets;
+            promiseWidgets.then(function (res) {
+                widgets = res.data;
+                widget.index = widgets.length;
+                var promiseWidget = WidgetService.createWidget(vm.pageId, widget);
+                promiseWidget.then(function (res) {
+                    widget = res.data;
+                    var dest = "/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+ "/widget/"+widget._id;
+                    $location.url(dest);
+                }, function (res) {
+                    vm.error = 'user not found';
+                });
+            }, function (res) {
+                vm.error = 'user not found';
+            });
         }
     }
 })();

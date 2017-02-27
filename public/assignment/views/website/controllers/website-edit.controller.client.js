@@ -11,19 +11,40 @@
         vm.update = updateWebsite;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            var promiseWebsite = WebsiteService.findWebsiteById(vm.websiteId);
+            var promiseWebsites = WebsiteService.findWebsitesByUser(vm.userId);
+
+            promiseWebsites.then(function (res) {
+                vm.websites = res.data;
+            }, function (res) {
+                vm.error = 'user not found';
+            });
+
+            promiseWebsite.then(function (res) {
+                vm.website = res.data;
+            }, function (res) {
+                vm.error = 'user not found';
+            });
         }
         init();
 
         function deleteWebsite (wid) {
-            WebsiteService.deleteWebsite(wid);
+            var promise = WebsiteService.deleteWebsite(wid);
+            promise.then(function (res) {
+                return;
+            }, function (res) {
+                vm.error = 'user not found';
+            });
         };
+
         
         function updateWebsite(wid, website) {
-            if(WebsiteService.updateWebsite(wid, website) === false){
-                vm.error = "could not update";
-            };
+            var promise = WebsiteService.updateWebsite(wid, website);
+            promise.then(function (res) {
+                return;
+            }, function (res) {
+                vm.error = 'user not found';
+            });
         }
     }
 })();

@@ -9,12 +9,13 @@
         vm.register=register;
 
         function login(user) {
-            var loginUser = UserService.findUserByCredentials(user.username, user.password);
-            if(loginUser != null) {
+            var promise = UserService.findUserByCredentials(user.username, user.password);
+            promise.then(function (res) {
+                var loginUser = res.data;
                 $location.url('/user/' + loginUser._id);
-            } else {
+            }, function (res) {
                 vm.error = 'user not found';
-            }
+            });
         }
 
         function register() {

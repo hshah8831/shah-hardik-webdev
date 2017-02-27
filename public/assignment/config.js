@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("WebAppMaker", ["ngRoute"])
+        .module("WebAppMaker")
         .config(configuration);
 
     function configuration($routeProvider) {

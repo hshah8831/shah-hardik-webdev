@@ -3,13 +3,7 @@
         .module("WebAppMaker")
         .factory('UserService', userService);
 
-    function userService() {
-        var users = [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder", email: "alice_wonder@yomail.com"  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley", email: "bob_marley@yomail.com"  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia", email: "charly_garcia@yomail.com"  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi", email: "jose_annunzi@yomail.com" }
-        ];
+    function userService($http) {
 
         var api = {
             "createUser": createUser,
@@ -22,62 +16,27 @@
         return api;
 
         function createUser(user){
-            user._id = (new Date()).getTime();
-            users.push(user);
-            return user;
+            return $http.post("/api/user/", user);
         }
 
         function findUserByUsername(username) {
-            for(var u in users) {
-                var user = users[u];
-                if( user.username === username ) {
-                    return angular.copy(user);
-                }
-            }
-            return null;
+            return $http.get("/api/user?username="+username);
         }
 
         function findUserById(uid) {
-            for(var u in users) {
-                var user = users[u];
-                if( user._id == uid ) {
-                    return angular.copy(user);
-                }
-            }
-            return null;
+            return $http.get("/api/user/"+uid);
         }
 
         function findUserByCredentials(username, password) {
-            for(var u in users) {
-                var user = users[u];
-                if( user.username === username &&
-                    user.password === password) {
-                    return angular.copy(user);
-                }
-            }
-            return null;
+            return $http.get("/api/user?username="+username+"&password="+password);
         }
         
         function updateUser(uid, user) {
-            for(var u in users) {
-                if( users[u]._id == uid ) {
-                    users[u].firstName = user.firstName;
-                    users[u].lastName = user.lastName;
-                    users[u].email = user.email;
-                    return user;
-                }
-            }
-            return null;
+            return $http.put("/api/user/"+uid, user);
         }
         
         function deleteUser(uid) {
-            for(var u in users) {
-                if( users[u]._id == uid ) {
-                    users.splice(u,1);
-                    return true
-                }
-            }
-            return false;
+            return $http.delete("/api/user/"+uid);
         }
     }
 })();

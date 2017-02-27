@@ -9,12 +9,22 @@
         vm.websiteId = $routeParams.wid;
         vm.create = create;
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            var promise = PageService.findPageByWebsiteId(vm.websiteId);
+            promise.then(function (res) {
+                vm.pages = res.data;
+            }, function (res) {
+                vm.error = 'user not found';
+            });
         };
         init();
 
         function create(wid, page) {
-            PageService.createPage(wid, page);
+            var promise = PageService.createPage(wid, page);
+            promise.then(function (res) {
+                return;
+            }, function (res) {
+                vm.error = 'user not found';
+            });
         }
     }
 })();

@@ -10,9 +10,18 @@
         vm.pageId = $routeParams.pid;
         vm.doYouTrustUrl = doYouTrustUrl;
         vm.getTrustedHtml = getTrustedHtml;
+        vm.registerIndexChange = registerIndexChange;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+            var promise = WidgetService.findWidgetsByPageId(vm.pageId);
+            promise.then(function (res) {
+                vm.widgets = res.data;
+                vm.widgets.sort(function(a, b) {
+                    return a.index - b.index;
+                });
+            }, function (res) {
+                vm.error = 'user not found';
+            });
         }
         init();
 
@@ -27,6 +36,18 @@
 
         function getTrustedHtml(html) {
             return $sce.trustAsHtml(html);
+        }
+
+        function registerIndexChange(initial, final) {
+            var promise = WidgetService.changeIndex(vm.pageId, initial, final);
+            promise.then(
+                function (res) {
+                    //success
+                },
+                function (res) {
+                    //failed
+                }
+            )
         }
     }
 })();
