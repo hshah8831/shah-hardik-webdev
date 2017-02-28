@@ -1,5 +1,8 @@
 <div class="container">
     <h1>Image Edit</h1>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
     <form>
         <div class="form-group">
             <label for="url">URL</label>
@@ -29,7 +32,7 @@
         </div>
     </form>
     <a ng-click="model.fileUpload()"
-       class="btn btn-primary  btn-block" href="#">Upload Image</a>
+       class="btn btn-primary  btn-block" href="">Upload Image</a>
     <a class="btn btn-danger  btn-block"
        ng-click="model.delete(model.widgetId)"
        href="#">Delete</a>

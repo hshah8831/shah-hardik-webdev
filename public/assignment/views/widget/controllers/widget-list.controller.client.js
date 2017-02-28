@@ -27,11 +27,13 @@
 
 
         function doYouTrustUrl(url) {
-            var baseUrl = "https://www.youtube.com/embed/";
-            var urlParts = url.split('/');
-            var id = urlParts[urlParts.length - 1];
-            baseUrl += id;
-            return $sce.trustAsResourceUrl(baseUrl);
+            if(url){
+                var baseUrl = "https://www.youtube.com/embed/";
+                var urlParts = url.split('/');
+                var id = urlParts[urlParts.length - 1];
+                baseUrl += id;
+                return $sce.trustAsResourceUrl(baseUrl);
+            }
         }
 
         function getTrustedHtml(html) {

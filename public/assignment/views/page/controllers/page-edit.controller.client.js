@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("pageEditController", pageEditController);
 
-    function pageEditController($routeParams, PageService) {
+    function pageEditController($location, $routeParams, PageService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
@@ -31,7 +31,7 @@
         function update(pid, page) {
             var promise = PageService.updatePage(pid, page);
             promise.then(function (res) {
-                return;
+                navigateToList();
             }, function (res) {
                 vm.error = 'user not found';
             });
@@ -40,10 +40,15 @@
         function deletePage(pid) {
             var promise = PageService.deletePage(pid);
             promise.then(function (res) {
-                return;
+                navigateToList();
             }, function (res) {
                 vm.error = 'user not found';
             });
+        }
+
+        function navigateToList() {
+            var dest = "/user/"+vm.userId+"/website/"+vm.websiteId+"/page/";
+            $location.url(dest);
         }
     }
 })();

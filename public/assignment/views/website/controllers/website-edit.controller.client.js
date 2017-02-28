@@ -31,7 +31,7 @@
         function deleteWebsite (wid) {
             var promise = WebsiteService.deleteWebsite(wid);
             promise.then(function (res) {
-                return;
+                navigateToList();
             }, function (res) {
                 vm.error = 'user not found';
             });
@@ -41,10 +41,15 @@
         function updateWebsite(wid, website) {
             var promise = WebsiteService.updateWebsite(wid, website);
             promise.then(function (res) {
-                return;
+                navigateToList();
             }, function (res) {
                 vm.error = 'user not found';
             });
+        }
+
+        function navigateToList() {
+            var dest = "/user/"+vm.userId+"/website/";
+            $location.url(dest);
         }
     }
 })();

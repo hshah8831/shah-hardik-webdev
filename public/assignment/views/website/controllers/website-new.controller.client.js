@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("websiteNewController", websiteNewController);
 
-    function websiteNewController($routeParams,WebsiteService) {
+    function websiteNewController($location, $routeParams,WebsiteService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.create = create;
@@ -21,10 +21,15 @@
         function create(uid, website) {
             var promise = WebsiteService.createWebsite(uid, website);
             promise.then(function (res) {
-                return;
+                navigateToList();
             }, function (res) {
                 vm.error = 'user not found';
             });
         };
+
+        function navigateToList() {
+            var dest = "/user/"+vm.userId+"/website/";
+            $location.url(dest);
+        }
     }
 })();

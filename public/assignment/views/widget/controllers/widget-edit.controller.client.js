@@ -32,8 +32,7 @@
         function update(wgid,widget) {
             var promise = WidgetService.updateWidget(wgid,widget);
             promise.then(function (res) {
-                var dest = "/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+ "/widget/";
-                $location.url(dest)
+                navigateToList()
             }, function (res) {
                 vm.error = "widget not found";
             });
@@ -50,8 +49,7 @@
                     movePromise.then(function (res) {
                         var deletePromise = WidgetService.deleteWidget(wgid);
                         deletePromise.then(function () {
-                            var dest = "/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+ "/widget/";
-                            $location.url(dest)
+                            navigateToList();
                         }, function (res) {
                             vm.error = 'user not found';
                         })
@@ -74,16 +72,20 @@
             fd.append("data", JSON.stringify(vm.widget));
             var promise = WidgetService.fileUpload(fd);
             promise.then(function (res) {
-                var dest = "/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+ "/widget/";
-                $location.url(dest)
+                navigateToList()
             }, function (res) {
-                vm.error = ""
+                vm.error = "problem uploading the pic, try again";
             })
         }
 
         function filesChanged(elm) {
             vm.files=elm.files;
             vm.$apply();
+        }
+
+        function navigateToList() {
+            var dest = "/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+ "/widget/";
+            $location.url(dest);
         }
     }
 })();
