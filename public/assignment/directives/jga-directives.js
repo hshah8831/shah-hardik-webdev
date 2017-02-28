@@ -1,7 +1,8 @@
 (function () {
     angular
         .module("jgaDirective", [])
-        .directive("jgaSortable", sortableDir);
+        .directive("jgaSortable", sortableDir)
+        .directive("fileInput", ['$parse', fileInput]);
 
     function sortableDir($http) {
         function linkFunc(scope, element, attributes) {
@@ -22,5 +23,20 @@
             scope: { callbackFn: '&' },
             link: linkFunc
         };
+    }
+    
+    function fileInput($parse) {
+        function linkFunc(scope, element, attributes) {
+            element.bind('change', function () {
+                $parse(attributes.fileInput)
+                    .assign(scope, element[0].files)
+                scope.$apply();
+            })
+        }
+        
+        return {
+            restrict: 'A',
+            link: linkFunc
+        }
     }
 })();

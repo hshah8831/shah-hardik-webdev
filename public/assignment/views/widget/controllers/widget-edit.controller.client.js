@@ -12,6 +12,8 @@
         vm.getEditorTemplateUrl = getEditorTemplateUrl;
         vm.update = update;
         vm.delete = deleteWidget;
+        vm.fileUpload=fileUpload;
+        vm.filesChanged=filesChanged;
         function init() {
             var promise = WidgetService.findWidgetById(vm.widgetId);
             promise.then(function (res) {
@@ -30,7 +32,8 @@
         function update(wgid,widget) {
             var promise = WidgetService.updateWidget(wgid,widget);
             promise.then(function (res) {
-                return;
+                var dest = "/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+ "/widget/";
+                $location.url(dest)
             }, function (res) {
                 vm.error = "widget not found";
             });
@@ -61,6 +64,26 @@
             }, function (res) {
                 vm.error = 'user not found';
             });
+        }
+
+        function fileUpload() {
+            var fd = new FormData();
+            angular.forEach(vm.files, function (file) {
+                fd.append('file', file);
+            })
+            fd.append("data", JSON.stringify(vm.widget));
+            var promise = WidgetService.fileUpload(fd);
+            promise.then(function (res) {
+                var dest = "/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+ vm.pageId+ "/widget/";
+                $location.url(dest)
+            }, function (res) {
+                vm.error = ""
+            })
+        }
+
+        function filesChanged(elm) {
+            vm.files=elm.files;
+            vm.$apply();
         }
     }
 })();

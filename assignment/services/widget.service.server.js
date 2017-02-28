@@ -6,6 +6,10 @@ module.exports= function (app) {
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
 
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
+    app.post ("/api/upload", upload.single('file'), uploadImage);
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO" , "index" : 0},
@@ -119,6 +123,23 @@ module.exports= function (app) {
             }
             res.json(widgets);
             return;
+        }
+        res.sendStatus(404);
+        return;
+    }
+
+    function uploadImage(req, res) {
+        var widget      = JSON.parse(req.body.data);
+        var myFile        = req.file;
+        var wgid = widget._id;
+        if(wgid && myFile){
+            for(var w in widgets) {
+                if( widgets[w]._id == wgid) {
+                    widgets[w].url = "http://"+ req.rawHeaders[1]+"/uploads/"+ myFile.filename;
+                    res.sendStatus(200);
+                    return;
+                }
+            }
         }
         res.sendStatus(404);
         return;
