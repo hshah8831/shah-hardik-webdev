@@ -1,4 +1,4 @@
 (function () {
     angular
-        .module("WebAppMaker", ["ngRoute", "jgaDirective"]);
+        .module("WebAppMaker", ["ngRoute", "jgaDirective", "textAngular"]);
 })();

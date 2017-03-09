@@ -14,6 +14,7 @@
         vm.delete = deleteWidget;
         vm.fileUpload=fileUpload;
         vm.filesChanged=filesChanged;
+
         function init() {
             var promise = WidgetService.findWidgetById(vm.widgetId);
             promise.then(function (res) {

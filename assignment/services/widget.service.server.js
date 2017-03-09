@@ -69,6 +69,11 @@ module.exports= function (app) {
                         widgets[w].width=widget.width;
                     } else if(widget.widgetType == "HTML"){
                         widgets[w].text=widget.text;
+                    } else if(widget.widgetType == "TEXT"){
+                        widgets[w].text=widget.text;
+                        widgets[w].placeholder=widget.placeholder;
+                        widgets[w].rows=widget.rows;
+                        widgets[w].formatted=widget.formatted;
                     }
                     res.json(widgets[w]);
                     return;

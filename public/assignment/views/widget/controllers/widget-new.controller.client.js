@@ -11,7 +11,14 @@
         vm.createHeader = createHeader;
         vm.createImage = createImage;
         vm.createYoutube = createYoutube;
+        vm.createText = createText;
 
+        function createText() {
+            var widget = {};
+            widget.pageId = vm.pageId;
+            widget.widgetType = "TEXT";
+            createAndNavigate(widget);
+        }
         function createHeader() {
             var widget = {};
             widget.pageId = vm.pageId;
