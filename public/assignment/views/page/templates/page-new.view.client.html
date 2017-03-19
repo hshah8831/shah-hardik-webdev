@@ -40,11 +40,11 @@
     <div class="row container-fluid">
         <ul class="list-group">
             <li ng-repeat = "page in model.pages" class="list-group-item">
-                <a href="#/user/{{model.userId}}/website/{{page.websiteId}}/page/{{page._id}}/widget"
+                <a href="#/user/{{model.userId}}/website/{{page._website}}/page/{{page._id}}/widget"
                    class="navbar-link color-blue">
                     {{page.name}}
                 </a>
-                <a href="#/user/{{model.userId}}/website/{{page.websiteId}}/page/{{page._id}}"
+                <a href="#/user/{{model.userId}}/website/{{page._website}}/page/{{page._id}}"
                    class="navbar-link pull-right">
                     <span class="glyphicon glyphicon-cog color-blue"></span>
                 </a>

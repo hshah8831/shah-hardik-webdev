@@ -34,8 +34,8 @@
             var promise = WidgetService.updateWidget(wgid,widget);
             promise.then(function (res) {
                 navigateToList()
-            }, function (res) {
-                vm.error = "widget not found";
+            }, function (err) {
+                vm.error = err;
             });
         }
 

@@ -35,7 +35,7 @@ module.exports = function () {
 
     function findWidgetById(widgetId) {
         var deferred = q.defer();
-        model.find(widgetId, function (err, res) {
+        model.findById(widgetId, function (err, res) {
             if(err) deferred.reject(err);
             else deferred.resolve(res);
         });
@@ -44,7 +44,7 @@ module.exports = function () {
 
     function updateWidget(widgetId, widget) {
         var deferred = q.defer();
-        model.update(widgetId,{$set : widget}, function (err, res) {
+        model.update({_id: widgetId},{$set : widget}, function (err, res) {
             if(err) deferred.reject(err);
             else deferred.resolve(res);
         });
@@ -70,13 +70,14 @@ module.exports = function () {
                     updatePromises.push(updateWidget(widgets[w]._id, widgets[w]))
                 }
                 Promise.all(updatePromises).then(function (result) {
-                    deferred.resolve(res);
+                    deferred.resolve(result);
                 }, function (err) {
                     deferred.reject(err);
                 })
             }, function (err) {
                 deferred.reject(err);
-            })
+            });
+        return deferred.promise;
     }
 
     function internalReorder(widgets, start, stop) {

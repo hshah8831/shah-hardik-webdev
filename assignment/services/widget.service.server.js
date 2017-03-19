@@ -49,7 +49,7 @@ module.exports= function (app, model) {
                         });
                 },
                 function (err) {
-                    res.send(500).send(err);
+                    res.status(500).send(err);
                 }
             );
         } else {
@@ -96,7 +96,7 @@ module.exports= function (app, model) {
                 .then(function (result) {
                     res.json(result);
                 }, function (err) {
-                    res.sendStatus(500).send(err);
+                    res.status(500).send(err);
                 });
         } else {
             res.send(404);
@@ -126,7 +126,7 @@ module.exports= function (app, model) {
             model
                 .widgetModel
                 .reorderWidget(pid, start, stop)
-                .this(function (result) {
+                .then(function (result) {
                     res.send(200);
                 }, function (err) {
                     res.send(500).send(err);
@@ -140,7 +140,7 @@ module.exports= function (app, model) {
         var widget      = JSON.parse(req.body.data);
         var myFile        = req.file;
         var wgid = widget._id;
-        wigdet.url = "http://"+ req.rawHeaders[1]+"/uploads/"+ myFile.filename;
+        wigdet.image.url = "http://"+ req.rawHeaders[1]+"/uploads/"+ myFile.filename;
 
         if(wgid && myFile){
             model

@@ -6,19 +6,19 @@
     <form>
         <div class="form-group">
             <label for="text">Text</label>
-            <input ng-model="model.widget.text" type="text" class="form-control" id="text" placeholder="Lorem Ipsum...">
+            <input ng-model="model.widget.textInput.text" type="text" class="form-control" id="text" placeholder="Lorem Ipsum...">
         </div>
         <div class="form-group">
             <label for="rows">Rows</label>
-            <input ng-model="model.widget.rows" type="number" class="form-control" id="rows">
+            <input ng-model="model.widget.textInput.rows" type="number" class="form-control" id="rows">
         </div>
         <div class="form-group">
             <label for="placeholder">Placeholder</label>
-            <input ng-model="model.widget.placeholder" type="text" class="form-control" id="placeholder">
+            <input ng-model="model.widget.textInput.placeholder" type="text" class="form-control" id="placeholder">
         </div>
         <div class="form-group">
             <label for="formatted">Formatted</label>
-            <input ng-model="model.widget.formatted" type="checkbox" class="form-control" id="formatted">
+            <input ng-model="model.widget.textInput.formatted" type="checkbox" class="form-control" id="formatted">
         </div>
     </form>
     <a class="btn btn-danger  btn-block" ng-click="model.delete(model.widgetId)"

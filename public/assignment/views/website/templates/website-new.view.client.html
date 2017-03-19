@@ -41,8 +41,8 @@
     <div class="row container-fluid">
         <ul class="list-group">
             <li ng-repeat = "website in model.websites" class="list-group-item">
-                <a href="#/user/{{website.developerId}}/website/{{website._id}}/page" class="navbar-link color-blue">{{website.name}}</a>
-                <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="navbar-link pull-right">
+                <a href="#/user/{{website._user}}/website/{{website._id}}/page" class="navbar-link color-blue">{{website.name}}</a>
+                <a href="#/user/{{website._user}}/website/{{website._id}}" class="navbar-link pull-right">
                     <span class="glyphicon glyphicon-cog color-blue"></span>
                 </a>
             </li>

@@ -12,11 +12,12 @@
         vm.createImage = createImage;
         vm.createYoutube = createYoutube;
         vm.createText = createText;
+        vm.createHTML = createHTML;
 
         function createText() {
             var widget = {};
             widget.pageId = vm.pageId;
-            widget.widgetType = "TEXT";
+            widget.widgetType = "INPUT";
             createAndNavigate(widget);
         }
         function createHeader() {
@@ -37,6 +38,13 @@
             var widget = {};
             widget.pageId = vm.pageId;
             widget.widgetType = "IMAGE";
+            createAndNavigate(widget);
+        }
+
+        function createHTML() {
+            var widget = {};
+            widget.pageId = vm.pageId;
+            widget.widgetType = "HTML";
             createAndNavigate(widget);
         }
 
