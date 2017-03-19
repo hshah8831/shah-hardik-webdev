@@ -1,9 +1,10 @@
 var mongoose = require("mongoose");
-var TextInputSchema = require("./textinput.schema.server.js")();
-var ImageSchema  = require("./image.schema.server.js")();
-var HeaderSchema = require("./header.schema.server.js")();
-var YouTubeSchema   = require("./youtube.schema.server.js")();
-var HtmlSchema      = require("./html.schema.server.js")();
+
+var TextInputSchema = require("./textinput.schema.server.js");
+var ImageSchema  = require("./image.schema.server.js");
+var HeaderSchema = require("./header.schema.server.js");
+var YouTubeSchema   = require("./youtube.schema.server.js");
+var HtmlSchema      = require("./html.schema.server.js");
 
 var WidgetSchema = mongoose.Schema({
     _page:  {
@@ -20,8 +21,8 @@ var WidgetSchema = mongoose.Schema({
     textInput : TextInputSchema,
     image     : ImageSchema,
     deletable : Boolean,
-    index     : Number,
+    index     : {type:Number, default:0},
     dateCreated: {type: Date, default: Date.now}
-});
+}, {collection: 'widget'});
 
 module.exports = WidgetSchema;

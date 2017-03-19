@@ -13,71 +13,100 @@ module.exports= function (app, model) {
 
     function createPage(req, res) {
         var page = req.body;
-        page.websiteId = req.params.websiteId;
-        page._id = (new Date()).getTime();
-        pages.push(page);
-        res.json(page);
+        var websiteId = req.params.websiteId;
+
+        if(page && websiteId){
+            var createPagePromise = model.pageModel.createPage(websiteId, page);
+            var fetchWebsitePromise = model.websiteModel.findWebsiteById(websiteId);
+
+            Promise.all([
+                createPagePromise,
+                fetchWebsitePromise
+            ]).then(
+                function (values){
+                    var page = values[0];
+                    var website = values[1];
+                    website.pages.push(page._id);
+                    model
+                        .websiteModel
+                        .updateWebsite(websiteId, website)
+                        .then(function (website) {
+                            res.json(page);
+                        }, function (err) {
+                            res.sendStatus(500).send(err);
+                        });
+                },
+                function (err) {
+                    res.sendStatus(500).send(err);
+                }
+            );
+        } else {
+            res.sendStatus(404);
+        }
     }
 
     function findAllPagesForWebsite(req, res) {
         var wid = req.params.websiteId;
-        var ret_pages = [];
         if(wid){
-            for(var p in pages){
-                var page = pages[p];
-                if(page.websiteId == wid){
-                    ret_pages.push(page);
-                }
-            }
+            model
+                .pageModel
+                .findAllPagesForWebsite(wid)
+                .then(function (pages) {
+                    res.json(pages);
+                }, function (err) {
+                    res.sendStatus(500).send(err);
+                })
+        } else {
+            res.send(404);
         }
-        res.json(ret_pages);
-        return;
     }
     
     function findPageById(req, res) {
         var pid = req.params.pageId;
         if(pid){
-            for(var p in pages){
-                var page = pages[p];
-                if(page._id == pid){
+            model
+                .pageModel
+                .findPageById(pid)
+                .then(function (page) {
                     res.json(page);
-                    return;
-                }
-            }
+                }, function (err) {
+                    res.send(500).send(err);
+                })
+        } else {
+            res.sendStatus(404);
         }
-        res.sendStatus(404);
-        return
     }
 
     function updatePage(req, res) {
         var pid = req.params.pageId;
         var page = req.body;
         if(pid && page){
-            for(var p in pages) {
-                if( pages[p]._id == pid ) {
-                    pages[p].name=page.name;
-                    pages[p].description=page.description;
-                    res.sendStatus(200);
-                    return;
-                }
-            }
+            model
+                .pageModel
+                .updatePage(pid, page)
+                .then(function (result) {
+                    res.send(200);
+                }, function (err) {
+                    res.send(500).send(err);
+                });
+        } else {
+            res.sendStatus(404);
         }
-        res.sendStatus(404);
-        return;
     }
 
     function deletePage(req, res) {
         var pid = req.params.pageId;
         if(pid){
-            for(var p in pages) {
-                if( pages[p]._id == pid ) {
-                    pages.splice(p,1);
-                    res.sendStatus(200);
-                    return;
-                }
-            }
+            model
+                .pageModel
+                .deletePage(pid)
+                .then(function (result) {
+                    res.send(200);
+                }, function (err) {
+                    res.send(500).send(err);
+                });
+        } else {
+            res.sendStatus(404);
         }
-        res.sendStatus(404);
-        return;
     }
 };

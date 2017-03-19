@@ -17,9 +17,13 @@
                 delete user.password1;
                 delete user.password2;
                 //add the new user to the database
-                user = UserService.createUser(user);
-                var dest = "/user/"+user._id;
-                $location.url(dest);
+                UserService.createUser(user).then(function (res) {
+                    user = res.data;
+                    var dest = "/user/"+user._id;
+                    $location.url(dest);
+                },function (err) {
+                    vm.error = "User does not exist";
+                });
             } else {
                 vm.error='passwords do not match';
             }
