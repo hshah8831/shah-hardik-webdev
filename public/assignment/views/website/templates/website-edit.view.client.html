@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div class="navbar-text pull-right wbdv-no-right-margin">
-                <a ng-click = "model.update(model.websiteId, model.website)" href="#">
+                <a ng-click = "model.update(model.websiteId, model.website)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -52,6 +52,9 @@
     <div class="container-fluid">
         <form>
             <div class="form-group center">
+                <div ng-show="model.error" class="alert alert-danger" role="alert">
+                    {{model.error}}
+                </div>
                 <label for="name">Website Name</label>
                 <input type="text"
                        class="form-control"

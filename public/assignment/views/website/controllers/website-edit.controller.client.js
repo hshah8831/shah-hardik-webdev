@@ -39,6 +39,10 @@
 
         
         function updateWebsite(wid, website) {
+            if(!website || !website.name){
+                vm.error = "required field missing";
+                return;
+            }
             var promise = WebsiteService.updateWebsite(wid, website);
             promise.then(function (res) {
                 navigateToList();

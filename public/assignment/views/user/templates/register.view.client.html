@@ -8,18 +8,25 @@
     <input  ng-model="model.user.username"
             type="text"
             class="form-control"
+            required
             placeholder="username"/>
     <input  ng-model="model.user.password1"
             type="password"
             class="form-control"
+            required
             placeholder="password"/>
     <input  ng-model="model.user.password2"
             type="password"
             class="form-control"
+            required
             placeholder="very password"/>
     <a class="btn btn-primary btn-block"
        ng-click="model.register(model.user)">
         Register
+    </a>
+    <a href="/auth/facebook" class="btn btn-primary btn-block">
+        <span class="fa fa-facebook"></span>
+        Facebook
     </a>
     <a class="btn btn-danger  btn-block"
        href="#/login">Cancel</a>

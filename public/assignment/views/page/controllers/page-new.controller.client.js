@@ -19,6 +19,10 @@
         init();
 
         function create(wid, page) {
+            if(!page || !page.name){
+                vm.error = "required field missing";
+                return;
+            }
             var promise = PageService.createPage(wid, page);
             promise.then(function (res) {
                 navigateToList();

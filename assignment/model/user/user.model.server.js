@@ -9,7 +9,8 @@ module.exports = function () {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findUserByFacebookId:findUserByFacebookId
     }
     return userModel;
     
@@ -65,5 +66,9 @@ module.exports = function () {
             else deferred.resolve(res);
         });
         return deferred.promise;
+    }
+    
+    function findUserByFacebookId(facebookId) {
+        return model.findOne({'facebook.id': facebookId});
     }
 }

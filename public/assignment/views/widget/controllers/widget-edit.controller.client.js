@@ -31,6 +31,10 @@
         }
 
         function update(wgid,widget) {
+            if(!widget || !widget.name){
+                vm.error = "required field missing";
+                return;
+            }
             var promise = WidgetService.updateWidget(wgid,widget);
             promise.then(function (res) {
                 navigateToList()

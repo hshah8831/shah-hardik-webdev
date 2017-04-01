@@ -3,10 +3,11 @@
         .module("WebAppMaker")
         .controller("profileController", profileController);
 
-    function profileController($routeParams, UserService) {
+    function profileController($routeParams,$rootScope,$location, UserService) {
         var vm = this;
         var userId = $routeParams['uid'];
         vm.update = update;
+        vm.logout = logout;
 
         function init() {
             var promise = UserService.findUserById(userId);
@@ -24,6 +25,16 @@
                 vm.message = "user successfully updated"
             }, function (res) {
                 vm.error = "unable to update user";
+            });
+        };
+
+        function logout() {
+            var promise = UserService.logout();
+            promise.then(function (res) {
+                $rootScope.currentUser = null;
+                $location.url("/login");
+            }, function (res) {
+                vm.error = 'no user logged in';
             });
         };
     };

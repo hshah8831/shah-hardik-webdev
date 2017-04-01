@@ -29,6 +29,10 @@
         init();
         
         function update(pid, page) {
+            if(!page || !page.name){
+                vm.error = "required field missing";
+                return;
+            }
             var promise = PageService.updatePage(pid, page);
             promise.then(function (res) {
                 navigateToList();
