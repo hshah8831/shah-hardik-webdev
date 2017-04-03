@@ -10,9 +10,9 @@
         vm.logout = logout;
 
         function init() {
-            var promise = UserService.findUserById(userId);
+            var promise = UserService.checkLoggedIn();
             promise.then(function (res) {
-                vm.user = res.data;
+                vm.user = res;
             }, function (res) {
                 vm.error = 'user not found';
             });

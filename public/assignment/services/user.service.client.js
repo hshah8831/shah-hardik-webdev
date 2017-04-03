@@ -14,7 +14,8 @@
             "deleteUser":deleteUser,
             "login": login,
             "logout": logout,
-            "register": register
+            "register": register,
+            "checkLoggedIn": checkLoggedIn
         };
         return api;
 
@@ -52,6 +53,13 @@
 
         function register(user) {
             return $http.post("/api/register", user);
+        }
+
+        function checkLoggedIn() {
+            return $http.get('/api/loggedin')
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 })();

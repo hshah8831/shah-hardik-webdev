@@ -67,7 +67,7 @@ module.exports = function () {
         });
         return deferred.promise;
     }
-    
+
     function findUserByFacebookId(facebookId) {
         return model.findOne({'facebook.id': facebookId});
     }

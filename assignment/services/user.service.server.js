@@ -12,18 +12,19 @@ module.exports = function (app, model) {
     var facebookConfig = {
         clientID     : "422362811471460",
         clientSecret : "a69fa5cec686fd3ccac255b2b6552923",
-        callbackURL  : "http://www.localhost:3000/auth/facebook/callback"
+        callbackURL  : "http://www.localhost:3000/auth/facebook/callback",
+        enableProof: true
     };
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
     app.post('/api/login', passport.authenticate('local'), login);
-    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get ('/auth/facebook', passport.authenticate('facebook', { session: false }));
     app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect: '/assignment/index.html#/user',
-            failureRedirect: '/assignment/index.html#/login'
-        }));
+        passport.authenticate('facebook', { failureRedirect: '#/login' }),
+        function(req, res) {
+            res.redirect('http://localhost:3000/assignment/index.html#/user');
+        });
     app.get('/api/loggedin', loggedin);
     app.post('/api/logout', logout);
     app.post('/api/register', register);
@@ -205,10 +206,29 @@ module.exports = function (app, model) {
             .then(function (user) {
                 if(user) {
                     return done(null, user);
+                } else {
+                    var nameList = profile.displayName.split(" ")
+                    var firstname = nameList[0];
+                    var lastname = nameList[nameList.length-1];
+                    var newUser = {
+                        username:  firstname,
+                        firstname: firstname,
+                        lastname:  lastname,
+                        facebook: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    model.userModel.createUser(newUser).then(function(user){
+                            return done(null, user);
+                        },function(err){
+                            return done(err);
+                        }
+                    );
                 }
-                return done(null, false);
             },function(err) {
                 if (err) { return done(err); }
             });
+
     }
 }
