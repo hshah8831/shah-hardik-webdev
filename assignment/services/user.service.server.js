@@ -21,10 +21,9 @@ module.exports = function (app, model) {
     app.post('/api/login', passport.authenticate('local'), login);
     app.get ('/auth/facebook', passport.authenticate('facebook', { session: false, scope : 'email' }));
     app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', { failureRedirect: '#/fail'}),
-        function(req, res) {
-            res.redirect('http://localhost:3000/assignment/index.html#/user');
-        });
+        passport.authenticate('facebook', {   successRedirect: '/assignment/index.html#/user',
+            failureRedirect: '/assignment/index.html#/login'
+        }));
     app.get('/api/loggedin', loggedin);
     app.post('/api/logout', logout);
     app.post('/api/register', register);
