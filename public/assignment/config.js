@@ -18,14 +18,14 @@
             .when("/user", {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
-                resolve: { loggedin: checkLoggedin },
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: { currentUser: checkLoggedin }
             })
             .when("/user/:uid", {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
                 controllerAs: 'model',
-                resolve: { loggedin: checkLoggedin }
+                resolve: { currentUser: checkLoggedin }
             })
             .when("/user/:uid/website", {
                 templateUrl: 'views/website/templates/website-list.view.client.html',
