@@ -12,7 +12,7 @@ module.exports = function (app, model) {
     var facebookConfig = {
         clientID     : "422362811471460",
         clientSecret : "a69fa5cec686fd3ccac255b2b6552923",
-        callbackURL  : "http://www.localhost:3000/auth/facebook/callback",
+        callbackURL  : process.env.FB_CALLBACK_DOMAIN + "/auth/facebook/callback",
         enableProof: true
     };
 
